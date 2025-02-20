@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Aegean Earthquakes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center everything horizontally */
+      justify-content: center;
+      max-width: 1920px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .section {
+      margin-bottom: 20px;
+      width: 100%;
+      display: flex;
+      flex-direction: column; /* Stack button and content vertically */
+      justify-content: center;
+      max-width: 1920px; /* Set max width to 1920px */
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .collapsible {
+      background-color: #777;
+      color: white;
+      cursor: pointer;
+      padding: 10px;
+      width: 80%;
+      text-align: center;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .collapsible:hover {
+      background-color: #555;
+    }
+    .content {
+      padding: 10px;
+      display: none; /* Initially hide the content */
+      overflow: hidden;
+      background-color: #f1f1f1;
+      width: 80%;
+      max-width: 1920px; /* Set max width to 1920px */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      max-width: 1920px; /* Set max width to 1920px */
+    }
+    img {
+      width: 100%;
+      max-width: 1920px; /* Set max width to 1920px */
+      height: auto;
+    }
+  </style>
+  <script>
+    function toggleVisibility(sectionId) {
+      var content = document.getElementById(sectionId);
+      // Toggle visibility based on the class or display status
+      if (content.style.display === 'block') {
+        content.style.display = 'none';
+      } else {
+        content.style.display = 'block';
+      }
+    }
+
+    // Ensure that the panels are collapsed initially
+    window.onload = function() {
+      var allContent = document.getElementsByClassName('content');
+      for (var i = 0; i < allContent.length; i++) {
+        allContent[i].style.display = 'none';
+      }
+    };
+  </script>
+</head>
+<body>
+
+<h1>Aegean Earthquakes</h1>
+
+<!-- Plotly Section -->
+<div class='section'>
+  <button class='collapsible' onclick='toggleVisibility("plotlySection")'>Interactive 3D plot</button>
+  <div id='plotlySection' class='content'>
+    <!-- Embed the Plotly HTML -->
+    <iframe src='3dplot.html' width='100%' height='600px'></iframe>
+  </div>
+</div>
+
+<!-- GGPlot Section -->
+<div class='section'>
+  <button class='collapsible' onclick='toggleVisibility("ggplotSection")'>Daily Boxplots</button>
+  <div id='ggplotSection' class='content'>
+    <img src='ggplot_image.png' alt='GGPlot Visualization'>
+  </div>
+</div>
+
+</body>
+</html>
+
