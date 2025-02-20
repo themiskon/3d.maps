@@ -4,29 +4,34 @@
 <head>
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <title>Aegean Earthquakes</title>
+  <title>Interactive Plots</title>
   <style>
+    /* Body styling for mobile-first design */
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
       display: flex;
       flex-direction: column;
-      align-items: center; /* Center everything horizontally */
+      align-items: center;
       justify-content: center;
       max-width: 1920px;
       margin-left: auto;
       margin-right: auto;
     }
+
+    /* Make sure sections stack nicely on smaller screens */
     .section {
       margin-bottom: 20px;
       width: 100%;
       display: flex;
-      flex-direction: column; /* Stack button and content vertically */
+      flex-direction: column; 
       justify-content: center;
-      max-width: 1920px; /* Set max width to 1920px */
+      max-width: 1920px;
       margin-left: auto;
       margin-right: auto;
     }
+
+    /* Button styling */
     .collapsible {
       background-color: #777;
       color: white;
@@ -41,38 +46,81 @@
       margin-left: auto;
       margin-right: auto;
     }
+
     .collapsible:hover {
       background-color: #555;
     }
+
+    /* Content styling (initially hidden) */
     .content {
       padding: 10px;
-      display: none; /* Initially hide the content */
+      display: none;
       overflow: hidden;
       background-color: #f1f1f1;
       width: 80%;
-      max-width: 1920px; /* Set max width to 1920px */
+      max-width: 1920px;
       display: flex;
       justify-content: center;
       align-items: center;
       margin-left: auto;
       margin-right: auto;
     }
+
+    /* Responsive iframe for Plotly plot */
     iframe {
       width: 100%;
-      height: 600px;
+      height: 60vw; /* Use relative units for responsive height */
       border: none;
-      max-width: 1920px; /* Set max width to 1920px */
+      max-width: 100%;
     }
+
+    /* Responsive images for GGPlot */
     img {
       width: 100%;
-      max-width: 1920px; /* Set max width to 1920px */
+      max-width: 1920px; 
       height: auto;
+    }
+
+    /* Media query for smaller screens */
+    @media only screen and (max-width: 768px) {
+      /* Adjust button font size and padding for smaller screens */
+      .collapsible {
+        font-size: 14px;
+        padding: 8px;
+        width: 90%; /* Button width adapts for smaller screens */
+      }
+
+      /* Adjust iframe height for smaller screens */
+      iframe {
+        height: 50vw; /* Adjust height relative to viewport width */
+      }
+
+      /* For images in small screens, limit max-width */
+      img {
+        max-width: 100%;
+      }
+    }
+
+    @media only screen and (max-width: 480px) {
+      /* Further adjustments for very small screens (phones in portrait mode) */
+      .collapsible {
+        font-size: 13px;
+        padding: 6px;
+        width: 95%;
+      }
+
+      iframe {
+        height: 50vw; /* Maintain aspect ratio */
+      }
+
+      img {
+        max-width: 100%;
+      }
     }
   </style>
   <script>
     function toggleVisibility(sectionId) {
       var content = document.getElementById(sectionId);
-      // Toggle visibility based on the class or display status
       if (content.style.display === 'block') {
         content.style.display = 'none';
       } else {
@@ -80,7 +128,6 @@
       }
     }
 
-    // Ensure that the panels are collapsed initially
     window.onload = function() {
       var allContent = document.getElementsByClassName('content');
       for (var i = 0; i < allContent.length; i++) {
@@ -91,11 +138,11 @@
 </head>
 <body>
 
-<h1>Aegean Earthquakes</h1>
+<h1>Interactive Plotly and GGPlot</h1>
 
 <!-- Plotly Section -->
 <div class='section'>
-  <button class='collapsible' onclick='toggleVisibility("plotlySection")'>Interactive 3D plot</button>
+  <button class='collapsible' onclick='toggleVisibility("plotlySection")'>Toggle Plotly Plot</button>
   <div id='plotlySection' class='content'>
     <!-- Embed the Plotly HTML -->
     <iframe src='3dplot.html' width='100%' height='600px'></iframe>
@@ -104,7 +151,7 @@
 
 <!-- GGPlot Section -->
 <div class='section'>
-  <button class='collapsible' onclick='toggleVisibility("ggplotSection")'>Daily Boxplots</button>
+  <button class='collapsible' onclick='toggleVisibility("ggplotSection")'>Toggle GGPlot</button>
   <div id='ggplotSection' class='content'>
     <img src='ggplot_image.png' alt='GGPlot Visualization'>
   </div>
